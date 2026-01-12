@@ -1,0 +1,67 @@
+<article class="app-cmp-section">
+  <header>
+    <button type="button" (click)="addInput()" class="app-cmp-button">
+      <i class="material-symbols-outlined">add</i>
+      Input
+    </button>
+
+    <span class="section-title">
+      Section
+      @if (!numberIsNaN()) {
+        <span class="app-cl-number">{{ sectionNumber() | number }}</span>
+      }
+    </span>
+
+    <button
+      type="button"
+      (click)="remove.emit()"
+      class="app-cmp-button app-cl-warn"
+      [disabled]="!removable()"
+    >
+      <i class="material-symbols-outlined">delete_forever</i>
+    </button>
+  </header>
+
+  <details open>
+    <summary>
+      <span class="summary-text">Numbers ({{ section().inputs.length | number }})</span>
+    </summary>
+
+    <div class="app-cl-column-container">
+      <ul class="-cmp-list">
+        @for (input of section().inputs; track input; let iIdx = $index) {
+          <li>
+            <label>
+              <b>Number {{ iIdx + 1 | number }} :: </b>
+              <input
+                type="number"
+                #numInput
+                [value]="input.value"
+                (change)="onInputChange(iIdx, numInput.valueAsNumber)"
+              />
+            </label>
+            <button
+              type="button"
+              (click)="removeInput(iIdx)"
+              class="app-cmp-button app-cl-warn app-cl-icon"
+              [disabled]="!canRemoveInput()"
+            >
+              <i class="material-symbols-outlined">delete_forever</i>
+            </button>
+          </li>
+        }
+      </ul>
+
+      <section>
+        <div class="app-cmp-number">
+          <label>
+            <b>Result :: </b>
+            <output class="app-cl-number app-out-number">
+              {{ result() | number }}
+            </output>
+          </label>
+        </div>
+      </section>
+    </div>
+  </details>
+</article>

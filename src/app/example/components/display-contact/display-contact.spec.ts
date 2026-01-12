@@ -8,9 +8,8 @@ describe('DisplayContact', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DisplayContact]
-    })
-    .compileComponents();
+      imports: [DisplayContact],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DisplayContact);
     component = fixture.componentInstance;

@@ -1,1 +1,320 @@
-/* You can add global styles to this file, and also import other style files */
+/* Cinnamoroll Theme - Minimal Cute Blue */
+@use './scss/common';
+
+:root {
+  // == Cinnamoroll Color Palette ==
+  --sys-brand-primary-color: #a8d8ea; // Soft sky blue
+  --sys-brand-secondary-color: #ffaec9; // Soft pink
+  --sys-brand-accent-color: #ffd6e8; // Light pink
+
+  --sys-font: 'Roboto Flex', 'Noto Sans Thai Looped', sans-serif;
+  --sys-monospace-font: 'Roboto Mono', monospace;
+
+  // Light mode colors
+  --sys-surface-color: light-dark(#f8fcff, #1a1f2e);
+  --sys-surface-container-color: light-dark(#e3f2fd, #2a3447);
+  --sys-surface-variant-color: light-dark(#fff8fb, #2d3240);
+  --sys-on-surface-color: light-dark(#37474f, #e3f2fd);
+  --sys-warn-color: #ff8a9b;
+  --sys-on-warn-color: #ffffff;
+
+  // Borders and dividers
+  --sys-border-color: light-dark(#b3d9ed, #3d4a5c);
+  --sys-shadow-color: light-dark(rgba(168, 216, 234, 0.2), rgba(0, 0, 0, 0.4));
+
+  --sys-gap: 6px;
+  --sys-column-gap: calc(2 * var(--sys-gap));
+  --sys-row-gap: var(--sys-gap);
+
+  // ---- Theme Properties --------------------------------------------------
+  --sys-primary-color: light-dark(#7fc8e3, #9dd9f0);
+  --sys-on-primary-color: light-dark(#ffffff, #1a2332);
+
+  --sys-secondary-color: light-dark(#ffb4d0, #ffc4db);
+  --sys-on-secondary-color: light-dark(#ffffff, #2d1f26);
+
+  // == Application properties ==================================================
+  --app-font: var(--sys-font);
+  --app-monospace-font: var(--sys-monospace-font);
+
+  --app-surface-color: var(--sys-surface-color);
+  --app-surface-container-color: var(--sys-surface-container-color);
+  --app-surface-variant-color: var(--sys-surface-variant-color);
+  --app-on-surface-color: var(--sys-on-surface-color);
+  --app-warn-color: var(--sys-warn-color);
+  --app-on-warn-color: var(--sys-on-warn-color);
+
+  --app-border-color: var(--sys-border-color);
+  --app-shadow-color: var(--sys-shadow-color);
+
+  --app-gap: var(--sys-gap);
+  --app-column-gap: var(--sys-column-gap);
+  --app-row-gap: var(--sys-row-gap);
+
+  // ---- Theme Properties --------------------------------------------------
+  --app-primary-color: var(--sys-primary-color);
+  --app-on-primary-color: var(--sys-on-primary-color);
+
+  --app-secondary-color: var(--sys-secondary-color);
+  --app-on-secondary-color: var(--sys-on-secondary-color);
+
+  color-scheme: light dark;
+
+  color: var(--app-on-surface-color);
+  background-color: var(--app-surface-color);
+
+  font-family: var(--app-font);
+  font-size: 16px;
+  line-height: 1.6;
+
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+
+  &[data-theme='light'] {
+    color-scheme: light;
+  }
+
+  &[data-theme='dark'] {
+    color-scheme: dark;
+  }
+}
+
+:root,
+body {
+  @include common.layout-block();
+  height: 100%;
+}
+
+input,
+textarea {
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.app-cmp-flex-row {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+
+  & > .app-cl-flex {
+    flex: 1 0 auto;
+  }
+
+  & > .app-cl-meta {
+    @include common.layout-block();
+    display: inline-block;
+    margin-left: auto;
+  }
+}
+
+.app-cmp-button {
+  @layer {
+    & {
+      --prop-color: var(--app-primary-color);
+      --prop-on-color: var(--app-on-primary-color);
+
+      --prop-text-color: var(--prop-color);
+      --prop-border-color: var(--app-border-color);
+      --prop-background-color: transparent;
+      --prop-on-hover-background-color: var(--app-surface-container-color);
+
+      --prop-border-style: 2px solid var(--prop-border-color);
+
+      &.app-cl-filled {
+        --prop-on-hover-background-color: color-mix(
+          in srgb,
+          var(--prop-color),
+          var(--app-surface-container-color) 15%
+        );
+      }
+    }
+  }
+
+  @include common.layout-block();
+
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  column-gap: 6px;
+
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  color: var(--prop-text-color);
+  background-color: var(--prop-background-color);
+  border: var(--prop-border-style);
+  border-radius: 16px;
+
+  padding: 0.6em 1.2em;
+  font-weight: 600;
+
+  box-shadow: 0 2px 4px var(--app-shadow-color);
+
+  &:hover:not(:disabled) {
+    background-color: var(--prop-on-hover-background-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px var(--app-shadow-color);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px var(--app-shadow-color);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  & > i {
+    font-size: 1.2em;
+  }
+}
+
+.app-cmp-nav {
+  @layer {
+    & {
+      --prop-color: var(--app-primary-color);
+      --prop-on-color: var(--app-on-primary-color);
+
+      --prop-text-color: var(--prop-color);
+      --prop-border-color: var(--app-border-color);
+      --prop-background-color: transparent;
+      --prop-filling-color: var(--app-surface-container-color);
+      --prop-column-gap: var(--app-column-gap);
+      --prop-row-gap: var(--app-row-gap);
+
+      --prop-border-style: 2px solid var(--prop-border-color);
+
+      &.app-cl-filled {
+        --prop-filling-color: var(--app-surface-variant-color);
+
+        & > *:not(.app-st-active):not(:hover) {
+          --prop-text-color: var(--app-on-surface-color);
+        }
+      }
+    }
+  }
+
+  @include common.layout-block();
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  column-gap: var(--prop-column-gap);
+  row-gap: var(--prop-row-gap);
+
+  margin-top: 12px;
+  margin-bottom: 12px;
+
+  list-style: none;
+
+  & > * {
+    @include common.layout-block();
+
+    display: inline-block;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+    color: var(--prop-text-color);
+    font-weight: 600;
+    border: var(--prop-border-style);
+    border-radius: 16px;
+    overflow: hidden;
+
+    box-shadow: 0 2px 4px var(--app-shadow-color);
+
+    &.app-st-active {
+      background-color: var(--prop-filling-color);
+      box-shadow: 0 4px 8px var(--app-shadow-color);
+    }
+
+    &:not(.app-st-active):hover {
+      background-color: color(from var(--prop-filling-color) srgb r g b / 0.6);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px var(--app-shadow-color);
+    }
+
+    & > a {
+      @include common.layout-block();
+
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      column-gap: var(--prop-column-gap);
+
+      height: 100%;
+      padding: 0.4em 1.2em;
+
+      color: inherit;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+  }
+}
+
+.app-cl-code,
+input[type='number'],
+.app-cl-number {
+  font-family: var(--app-monospace-font);
+}
+
+input[type='number'],
+.app-cl-number {
+  text-align: right;
+}
+
+input[type='text'],
+input[type='number'],
+textarea {
+  padding: 0.5em 0.8em;
+  border: 2px solid var(--app-border-color);
+  border-radius: 12px;
+  background-color: var(--app-surface-variant-color);
+  color: var(--app-on-surface-color);
+  transition: all 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: var(--app-primary-color);
+    box-shadow: 0 0 0 3px color(from var(--app-primary-color) srgb r g b / 0.1);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+@layer {
+  .app-cl-warn {
+    --prop-color: var(--app-warn-color);
+    --prop-on-color: var(--app-on-warn-color);
+  }
+
+  .app-cl-secondary {
+    --prop-color: var(--app-secondary-color);
+    --prop-on-color: var(--app-on-secondary-color);
+  }
+
+  .app-cl-filled {
+    --prop-text-color: var(--prop-on-color);
+    --prop-border-color: transparent;
+    --prop-background-color: var(--prop-color);
+    --prop-border-style: 0px solid var(--prop-border-color);
+  }
+}
+
+// Material Symbols
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}

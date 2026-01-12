@@ -8,9 +8,8 @@ describe('DynamicContact', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DynamicContact]
-    })
-    .compileComponents();
+      imports: [DynamicContact],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DynamicContact);
     component = fixture.componentInstance;

@@ -8,9 +8,8 @@ describe('DynamicTel', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DynamicTel]
-    })
-    .compileComponents();
+      imports: [DynamicTel],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DynamicTel);
     component = fixture.componentInstance;

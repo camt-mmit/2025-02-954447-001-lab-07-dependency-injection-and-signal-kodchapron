@@ -41,16 +41,24 @@
       </svg>
 
       <h1>{{ title() }}</h1>
-      <input type="text" #titleInput [value]="title()" (change)="title.set(titleInput.value)" />
-      <!-- #titleInput ตั้งชื่อ element ให้ input -->
-      <nav>
-        <ul>
-          <li routerLinkActive="app-st-active">
-            <a routerLink="./example">Example</a>
-          </li>
-        </ul>
-      </nav>
     </div>
+
+    <nav>
+      <ul class="app-cmp-nav">
+        <li routerLinkActive="app-st-active">
+          <a routerLink="./example">
+            <i class="material-symbols-outlined">labs</i>
+            Example
+          </a>
+        </li>
+        <li routerLinkActive="app-st-active">
+          <a routerLink="./assignment">
+            <i class="material-symbols-outlined">assignment</i>
+            Assignment
+          </a>
+        </li>
+      </ul>
+    </nav>
   </header>
 
   <router-outlet />

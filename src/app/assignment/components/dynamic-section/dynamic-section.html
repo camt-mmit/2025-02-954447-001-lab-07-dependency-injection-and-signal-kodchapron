@@ -1,0 +1,23 @@
+<header>
+  <span>
+    <button type="button" (click)="addSection()" class="app-cmp-button app-cl-filled">
+      <i class="material-symbols-outlined">post_add</i>
+      Section
+    </button>
+  </span>
+
+  <span class="-cl-float-right">
+    <span class="-cmp-sections-summary app-cl-number"> ({{ sections().length }}) </span>
+  </span>
+</header>
+
+<div class="-cmp-list">
+  @for (section of sections(); track section; let sIdx = $index) {
+    <app-dynamic-input
+      [sectionNumber]="sIdx + 1"
+      [(section)]="sections()[sIdx]"
+      [removable]="canRemoveSection()"
+      (remove)="removeSection(sIdx)"
+    />
+  }
+</div>
